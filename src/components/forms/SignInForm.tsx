@@ -1,22 +1,14 @@
 "use client"
 
 import * as z from "zod"
-import { Button } from "@/components/ui/button"
-import {
-    Form,
-    FormControl,
-    FormDescription,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import {Button} from "@/components/ui/button"
+import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage,} from "@/components/ui/form";
+import {Input} from "@/components/ui/input";
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {signIn} from "@/lib/api";
-import {Simulate} from "react-dom/test-utils";
 import {useToast} from "@/components/ui/use-toast";
+import useAuthModal from "@/hooks/useAuthModal";
 
 const formSchema = z.object({
     email: z.string().nonempty().email().min(3).max(100),
@@ -24,9 +16,9 @@ const formSchema = z.object({
 });
 
 
-
 const SignInForm = () => {
     const toast = useToast();
+    const {close} = useAuthModal();
 
     // 1. Define your form.
     const form = useForm<z.infer<typeof formSchema>>({
@@ -50,6 +42,7 @@ const SignInForm = () => {
                     description: "You're now logged as " + authReponse.record.name
                 })
 
+                close()
             }).catch((err) => {
             console.log(err.data)
             toast.toast({
