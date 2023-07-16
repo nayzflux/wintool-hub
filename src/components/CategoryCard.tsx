@@ -16,9 +16,9 @@ const CategoryCard = ({id, name, description, slug, softwares, cover}: any) => {
                     <div className="w-[200px] h-[200px] rounded-lg bg-neutral-100/20"></div>
                 }
 
-                <div className="flex flex-col gap-2 mt-auto">
-                    <CardTitle>{name}</CardTitle>
-                    <CardDescription className="truncate">{description}</CardDescription>
+                <div className="flex flex-col gap-2 h-full overflow-ellipsis">
+                    <CardTitle className="mt-auto">{name}</CardTitle>
+                    <CardDescription className="">{description}</CardDescription>
                     <Button asChild className="gap-2">
                         <Link href={`/category/${slug}`}>
                             <EyeIcon className="w-6"/> See Category
