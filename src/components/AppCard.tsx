@@ -32,9 +32,9 @@ const AppCard = async ({id}: any) => {
 
                 <div className="flex flex-col gap-2 flex-grow overflow-ellipsis justify-center">
                     <div className="flex gap-4">
-                        <div className="flex gap-2 items-center">
+                        <div className="flex gap-2 items-center overflow-ellipsis">
                             {tags?.map((item: any) => (
-                                <p className="p-1 rounded-full text-xs border border-green-500 text-green-500 items-center">#{item.name}</p>
+                                <p className={`p-1 rounded-full text-xs border border-${item.color || 'neutral'}-500 text-${item.color || 'neutral'}-500 hover:opacity-80 items-center`}>#{item.name}</p>
                             ))}
                         </div>
 
