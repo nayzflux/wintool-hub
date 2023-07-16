@@ -8,13 +8,13 @@ const Footer = () => {
             <Separator/>
 
             <div className="flex h-full w-full items-center justify-around py-5 ">
-                <Link href={"https://github.com/nayzflux/wintool-hub"}
+                <Link href={"https://dub.sh/ytMphbA"}
                       className="hover:underline text-blue-600 text-xs">Github</Link>
                 <Link href={"https://github.com/nayzflux/wintool-hub/issues"}
                       className="hover:underline text-blue-600 text-xs">Any Suggestions</Link>
                 <Link href={"https://github.com/nayzflux/wintool-hub/issues"}
                       className="hover:underline text-blue-600 text-xs">Report Bugs</Link>
-                <Link href={"https://discord.gg/nhHXf2tSpP"} className="hover:underline text-blue-600 text-xs">Contact
+                <Link href={"https://dub.sh/7YYZJca"} className="hover:underline text-blue-600 text-xs">Contact
                     Me</Link>
             </div>
 
