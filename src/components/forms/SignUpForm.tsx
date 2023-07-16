@@ -48,7 +48,8 @@ const SignUpForm = () => {
         console.log(values)
 
         signUp(values.email, values.password, values.username, values.name, values.passwordConfirm)
-            .then((user) => {
+            .then((authResponse) => {
+                const user = authResponse.record;
                 console.log('Sign Up Success: ', user)
 
                 toast.toast({
@@ -64,7 +65,7 @@ const SignUpForm = () => {
 
             toast.toast({
                 title: "Something went wrong!",
-                description: "Unable to create user",
+                description: "Unable to create user, please try again",
                 variant: "destructive"
             });
 

@@ -30,13 +30,14 @@ export const signIn = async (email: string, password: string) => {
     return await pb.collection('users').authWithPassword(email, password)
 }
 export const signUp = async (email: string, password: string, username: string, name: string, passwordConfirm: string) => {
-    return await pb.collection('users').create({
+    await pb.collection('users').create({
         email,
         password,
         username,
         name,
         passwordConfirm
-    })
+    });
+    return await signIn(email, password);
 }
 
 export const star = async (appId: string, userId: string) => {
