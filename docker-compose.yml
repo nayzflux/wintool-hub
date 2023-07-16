@@ -1,0 +1,27 @@
+version: '3'
+
+volumes:
+  db-wintol-dev:
+
+networks:
+  webgateway:
+    external: true
+    name: webgateway
+
+services:
+  db-wintool-dev:
+    image: pocketbase
+    restart: always
+    networks:
+      - webgateway
+    expose:
+      - 8080
+    volumes:
+      - /data:/data
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.db-wintool-dev.rule=Host(`dev.api.wintool.nayz.fr`)
+      - traefik.http.routers.db-wintool-dev.entrypoints=websecure
+      - traefik.http.routers.db-wintool-dev.service=db-wintool-dev
+      - traefik.http.services.db-wintool-dev.loadbalancer.server.port=8080
+      - traefik.http.routers.db-wintool-dev.tls.certresolver=production

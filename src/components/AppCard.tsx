@@ -23,9 +23,12 @@ const AppCard = async ({id}: any) => {
     return (
         <Card className="group cursor-pointer">
             <CardContent className="flex gap-4 pt-6">
-                <Image className="rounded-lg w-[200px] h-[200px]" src={getImageUrl(id, 'softwares', logo)}
-                       alt="App's Logo" width={200}
-                       height={200}/>
+                {logo ?
+                    <Image className="rounded-lg w-[200px] h-[200px]"
+                           src={getImageUrl(id, 'softwares', logo, '200x200')}
+                           alt="App's Logo" width={200}
+                           height={200}/> : <div className="w-[200px] h-[200px] rounded-lg bg-neutral-100/20"></div>
+                }
 
                 <div className="flex flex-col gap-2 flex-grow overflow-hidden">
                     <div className="flex gap-4">

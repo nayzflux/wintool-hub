@@ -10,7 +10,11 @@ const CategoryCard = ({id, name, description, slug, softwares, cover}: any) => {
     return (
         <Card>
             <CardContent className="grid grid-cols-2 gap-4 pt-6">
-                <Image className="rounded-lg" src={getImageUrl(id, 'categories', cover)} alt="Category's Cover" width={200} height={200} />
+                {cover ?
+                    <Image className="rounded-lg" src={getImageUrl(id, 'categories', cover, '200x200')}
+                           alt="Category's Cover" width={200} height={200}/> :
+                    <div className="w-[200px] h-[200px] rounded-lg bg-neutral-100/20"></div>
+                }
 
                 <div className="flex flex-col gap-2 mt-auto">
                     <CardTitle>{name}</CardTitle>
@@ -24,7 +28,10 @@ const CategoryCard = ({id, name, description, slug, softwares, cover}: any) => {
             </CardContent>
             <CardFooter className="flex gap-2 overflow-hidden">
                 {softwares?.map((item: any) => (
-                    <Image src={getImageUrl(item.id, 'softwares', item.logo)} alt={"App Logo"}  className="rounded-lg" height={75} width={75}/>
+                    item.image ?
+                        <Image src={getImageUrl(item.id, 'softwares', item.logo, '75x75')} alt={"App Logo"}
+                               className="rounded-lg" height={75} width={75}/> :
+                        <div className="w-[75px] rounded-lg bg-neutral-100/20"></div>
                 ))}
             </CardFooter>
         </Card>

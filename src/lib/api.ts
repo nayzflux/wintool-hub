@@ -22,43 +22,32 @@ export const getApp = async (id: string) => {
     });
 }
 
-export const getImageUrl = (id: string, collection: string, filename: string) => {
-    return `${process.env.NEXT_PUBLIC_POCKETBASE_URL}/api/files/${collection}/${id}/${filename}`;
+export const getImageUrl = (id: string, collection: string, filename: string, thumb: string | null) => {
+    return `${process.env.NEXT_PUBLIC_POCKETBASE_URL}/api/files/${collection}/${id}/${filename}?thumb=${thumb || '500x500'}`;
 }
 
 export const signIn = async (email: string, password: string) => {
-    const data = await pb.collection('users').authWithPassword(email, password);
-
-    console.log(data)
-
-    return data
+    return await pb.collection('users').authWithPassword(email, password)
 }
 export const signUp = async (email: string, password: string, username: string, name: string, passwordConfirm: string) => {
-    const data = await pb.collection('users').create({
+    return await pb.collection('users').create({
         email,
         password,
         username,
         name,
         passwordConfirm
-    });
-
-    console.log(data)
-
-    return data
+    })
 }
 
 export const star = async (appId: string, userId: string) => {
-    const data = await pb.collection('stars').create({
+    return await pb.collection('stars').create({
         software: appId,
         user: userId
     });
-    return data;
 }
 
 export const unStar = async (starId: string) => {
-    console.log(starId)
-    const data = await pb.collection('stars').delete(starId);
-    return data;
+    return await pb.collection('stars').delete(starId);
 }
 
 export const getAppStar = async (appId: string) => {
@@ -70,6 +59,5 @@ export const getAppStar = async (appId: string) => {
 }
 
 export const getUserStar = async (userId: string) => {
-    const data = await pb.collection('stars').getFirstListItem(`user="${userId}"`);
-    return data;
+    return await pb.collection('stars').getFirstListItem(`user="${userId}"`);
 }
