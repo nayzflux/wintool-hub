@@ -1,9 +1,11 @@
 "use client";
 
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {ArrowDownSquareIcon} from "lucide-react";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
+import pocketbase from "@/lib/pocketbase";
+import UserDropdown from "@/components/UserDropdown";
 
 const Header = () => {
     const pathname = usePathname();
@@ -18,7 +20,7 @@ const Header = () => {
             label: 'Categories',
         }
     ]
-    
+
     return (
         <header className="w-full shadow px-5 md:px-10 lg:px-16 xl:px-20 py-5 xl:py-10 gap-10 flex items-center">
             <div className="font-black text-xl uppercase flex items-center gap-2">
@@ -35,6 +37,8 @@ const Header = () => {
                     ))}
                 </ul>
             </nav>
+
+            <UserDropdown/>
         </header>
     );
 };

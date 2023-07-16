@@ -23,3 +23,24 @@ export const getApp = async (id: string) => {
 export const getImageUrl = (id: string, collection: string, filename: string) => {
     return `${process.env.NEXT_PUBLIC_POCKETBASE_URL}/api/files/${collection}/${id}/${filename}`;
 }
+
+export const signIn = async (email: string, password: string) => {
+    const data = await pb.collection('users').authWithPassword(email, password);
+
+    console.log(data)
+
+    return data
+}
+export const signUp = async (email: string, password: string, username: string, name: string, passwordConfirm: string) => {
+    const data = await pb.collection('users').create({
+        email,
+        password,
+        username,
+        name,
+        passwordConfirm
+    });
+
+    console.log(data)
+
+    return data
+}

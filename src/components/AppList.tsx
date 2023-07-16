@@ -5,7 +5,7 @@ import AppCard from "@/components/AppCard";
 const AppList = async ({softwares}: any) => {
 
     return (
-        <div className="grid grid-cols-3 gap-8">
+        <div className="grid xl: 2xl:grid-cols-2 gap-8">
             {softwares?.map((item: Software) => (
                 <Suspense fallback={<p>Loading App...</p>}>
                     <AppCard id={item.id}/>

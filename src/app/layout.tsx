@@ -3,6 +3,9 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import React from "react";
 import Header from "@/components/Header";
+import {AlertDialog} from "@/components/ui/alert-dialog";
+import AuthModal from "@/components/AuthModal";
+import {Toaster} from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,6 +18,10 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
     return (
         <html lang="en">
             <body className={inter.className}>
+                <Toaster/>
+
+                <AuthModal/>
+
                 <Header/>
 
                 <div className="p-5 md:p-10 lg:p-16 xl:p-20">
