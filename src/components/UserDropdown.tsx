@@ -53,7 +53,7 @@ const UserDropdown = () => {
                                    width={75} height={75} className="rounded-full w-6 h-6"/> :
                             <UserIcon className="w-6"/>
                         }
-                        {user?.name}
+                        <span className="hidden sm:inline">{user?.name}</span>
                     </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>

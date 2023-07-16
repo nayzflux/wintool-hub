@@ -21,7 +21,8 @@ const Footer = () => {
             <Separator className="w-11/12"/>
 
             <div className="flex h-full w-full items-center justify-center py-5">
-                <p className="text-sm text-neutral-500">© 2023 - 2023 dev.wingtool.nayz.fr - All Rights Reserved.</p>
+                <p className="text-xs sm:text-sm text-neutral-500 text-center">© 2023 - 2023 dev.wingtool.nayz.fr - All
+                    Rights Reserved.</p>
             </div>
         </footer>
     );
