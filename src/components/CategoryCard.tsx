@@ -26,12 +26,12 @@ const CategoryCard = ({id, name, description, slug, softwares, cover}: any) => {
                     </Button>
                 </div>
             </CardContent>
-            <CardFooter className="flex gap-2 overflow-hidden">
+            <CardFooter className="flex gap-2 overflow-hidden ">
                 {softwares?.map((item: any) => (
-                    item.image ?
+                    item.logo ?
                         <Image src={getImageUrl(item.id, 'softwares', item.logo, '75x75')} alt={"App Logo"}
                                className="rounded-lg" height={75} width={75}/> :
-                        <div className="w-[75px] rounded-lg bg-neutral-100/20"></div>
+                        <span className="w-[75px] h-[75px] rounded-lg bg-neutral-100"></span>
                 ))}
             </CardFooter>
         </Card>
