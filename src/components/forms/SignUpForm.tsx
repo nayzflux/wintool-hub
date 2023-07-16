@@ -9,6 +9,7 @@ import {zodResolver} from "@hookform/resolvers/zod";
 import {signUp} from "@/lib/api";
 import {useToast} from "@/components/ui/use-toast";
 import useAuthModal from "@/hooks/useAuthModal";
+import useUser from "@/hooks/useUser";
 
 const formSchema = z.object({
     name: z.string().nonempty().min(1).max(100),
@@ -26,6 +27,8 @@ const formSchema = z.object({
 const SignUpForm = () => {
     const toast = useToast();
     const {close} = useAuthModal();
+    const {setUser} = useUser();
+
     // 1. Define your form.
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -50,6 +53,8 @@ const SignUpForm = () => {
                     title: "Logged In!",
                     description: "You're now logged as " + authReponse.record.name
                 })
+
+                setUser(authReponse.record);
 
                 close();
             }).catch((err) => {

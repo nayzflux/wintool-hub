@@ -1,7 +1,6 @@
 "use client"
 
 import React, {useEffect, useState} from 'react';
-import pocketbase from "@/lib/pocketbase";
 
 import {
     DropdownMenu,
@@ -15,12 +14,12 @@ import {Button} from "@/components/ui/button";
 import {UserIcon} from "@heroicons/react/24/solid";
 import {ArrowLeftOnRectangleIcon} from "@heroicons/react/24/outline";
 import useAuthModal from "@/hooks/useAuthModal";
+import useUser from "@/hooks/useUser";
 
 const UserDropdown = () => {
-    const authStore = pocketbase.authStore;
-    const [user, setUser] = useState(authStore?.model);
     const [isMounted, setIsMounted] = useState(false);
     const authModal = useAuthModal();
+    const {user, authStore, setUser} = useUser();
 
     useEffect(() => {
         setIsMounted(true);
