@@ -23,10 +23,11 @@ const AppCard = async ({id}: any) => {
     return (
         <Card className="group cursor-pointer">
             <CardContent className="flex gap-4 pt-6">
-                <Image className="rounded-lg" src={getImageUrl(id, 'softwares', logo)} alt="App's Logo" width={200}
+                <Image className="rounded-lg w-[200px] h-[200px]" src={getImageUrl(id, 'softwares', logo)}
+                       alt="App's Logo" width={200}
                        height={200}/>
 
-                <div className="flex flex-col gap-2 flex-grow">
+                <div className="flex flex-col gap-2 flex-grow overflow-hidden">
                     <div className="flex gap-4">
                         <div className="flex gap-2 items-center">
                             {tags?.map((item: any) => (
@@ -38,7 +39,7 @@ const AppCard = async ({id}: any) => {
                     </div>
 
                     <CardTitle>{name}</CardTitle>
-                    <CardDescription>{description} {stars?.length || 0}</CardDescription>
+                    <CardDescription className="">{description} {stars?.length || 0}</CardDescription>
 
                     <div className="flex gap-4 mt-auto w-full ">
                         <Button asChild className="gap-2 flex-grow">

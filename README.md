@@ -2,7 +2,31 @@
 
 ## Description
 
-Ce projet est un site web open source qui regroupe une collection de logiciels utiles pour les PC Windows. L'objectif principal est de fournir aux utilisateurs une plateforme centralisée pour découvrir, télécharger et utiliser différents logiciels dans des catégories telles que les lanceurs de jeux, les logiciels de gestion, les logiciels de montage, les logiciels de développement et les logiciels de communication.
+Ce projet est un site web open source qui regroupe une collection de logiciels utiles pour les PC Windows. L'objectif
+principal est de fournir aux utilisateurs une plateforme centralisée pour découvrir, télécharger et utiliser différents
+logiciels dans des catégories telles que les lanceurs de jeux, les logiciels de gestion, les logiciels de montage, les
+logiciels de développement et les logiciels de communication.
+
+## Tech Stacks
+
+### Styling
+
+- ✒️ ``tailwindcss``
+- ✒️ ``shadcn-ui``
+
+### Fronted
+
+- ``nextjs``
+- ``reactjs``
+
+### Database
+
+- 📜 ``pocketbase``
+
+### Language
+
+- ``typescript``
+- ``nodejs``
 
 ## Fonctionnalités
 
