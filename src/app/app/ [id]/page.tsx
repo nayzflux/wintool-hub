@@ -1,6 +1,8 @@
 import React from 'react';
 
-const AppPage = ({params}: any) => {
+const AppPage = async ({params}: any) => {
+    const id = params.id;
+
     return (
         <div>
 

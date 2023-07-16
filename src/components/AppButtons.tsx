@@ -29,6 +29,8 @@ const AppButtons = ({id, stars}: any) => {
         if (isStarring) {
             unStar(stars?.find((o: any) => o.user === user?.id).id)
                 .then(record => {
+                    console.log("Star Remove Success:", record)
+
                     toast.toast({
                         title: "Star Removed!",
                         description: "You removed a star from an app",
@@ -36,9 +38,11 @@ const AppButtons = ({id, stars}: any) => {
 
                     router.refresh();
                 }).catch((err) => {
+                console.log("Star Remove Error:", err)
+
                 toast.toast({
                     title: "Something went wrong!",
-                    description: "You already don't starred this app",
+                    description: "Star removing failed, please try again",
                     variant: 'destructive'
                 })
 
@@ -47,6 +51,8 @@ const AppButtons = ({id, stars}: any) => {
         } else {
             star(id, user.id)
                 .then(record => {
+                    console.log("Star Add Success:", record)
+
                     toast.toast({
                         title: "Star Added!",
                         description: "You added a ⭐ star to an app",
@@ -54,9 +60,11 @@ const AppButtons = ({id, stars}: any) => {
 
                     router.refresh();
                 }).catch((err) => {
+                console.log("Star Remove Error:", err)
+
                 toast.toast({
                     title: "Something went wrong!",
-                    description: "You already starred to this app",
+                    description: "Star adding failed, please try again",
                     variant: 'destructive'
                 })
 

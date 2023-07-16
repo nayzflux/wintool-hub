@@ -51,11 +51,9 @@ export const unStar = async (starId: string) => {
 }
 
 export const getAppStar = async (appId: string) => {
-    const data = await pb.collection('stars').getFullList({
+    return await pb.collection('stars').getFullList({
         filter: `software.id="${appId}"`
     });
-    console.log(appId, data)
-    return data;
 }
 
 export const getUserStar = async (userId: string) => {

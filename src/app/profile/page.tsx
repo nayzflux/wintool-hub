@@ -8,6 +8,7 @@ import useAuthModal from "@/hooks/useAuthModal";
 import pb from "@/lib/pocketbase";
 import Image from "next/image";
 import {getImageUrl} from "@/lib/api";
+import {useToast} from "@/components/ui/use-toast";
 
 const ProfilePage = () => {
     const {user, setUser} = useUser();
@@ -15,6 +16,7 @@ const ProfilePage = () => {
     const [hasSeen, setHasSeen] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
     const router = useRouter();
+    const toast = useToast();
 
     const [file, setFile] = useState(null);
 
@@ -23,10 +25,13 @@ const ProfilePage = () => {
 
         // If close modal
         if (hasSeen && !user) {
+            console.log("User close auth modal redirecting to home page...")
             return router.push('/');
         }
 
+        // If not logged
         if (!user) {
+            console.log("User not logged opening auth modal...")
             setHasSeen(true)
             open();
         }
@@ -50,11 +55,26 @@ const ProfilePage = () => {
         formData.append('avatar', file);
 
 
-        // upload and create new record
+        // upload
         pb.collection('users').update(user?.id, formData)
-            .then(r =>
-                setUser(r)
-            );
+            .then(user => {
+                console.log("File Upload Success:", user);
+
+                toast.toast({
+                    title: "File uploaded!",
+                    description: "Your avatar has been successfully updated"
+                });
+
+                setUser(user);
+            }).catch((err) => {
+            console.log("File Upload Error:", err);
+
+            toast.toast({
+                title: "Something went wrong!",
+                description: "File upload failed",
+                variant: "destructive"
+            });
+        });
     }
 
 

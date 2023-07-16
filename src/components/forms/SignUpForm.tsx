@@ -48,26 +48,29 @@ const SignUpForm = () => {
         console.log(values)
 
         signUp(values.email, values.password, values.username, values.name, values.passwordConfirm)
-            .then(authReponse => {
+            .then((user) => {
+                console.log('Sign Up Success: ', user)
+
                 toast.toast({
                     title: "Logged In!",
-                    description: "You're now logged as " + authReponse.record.name
+                    description: "You're now logged as " + user.name
                 })
 
-                setUser(authReponse.record);
+                setUser(user);
 
                 close();
             }).catch((err) => {
-                console.log(err.data)
-                toast.toast({
-                    title: "Something went wrong!",
-                    description: "Unable to create user",
-                    variant: "destructive"
-                });
+            console.log('Sign Up Error: ', err)
 
-                const fields = ["email", "username", "password", "passwordConfirm", "name"];
+            toast.toast({
+                title: "Something went wrong!",
+                description: "Unable to create user",
+                variant: "destructive"
+            });
 
-                for (const field of fields) {
+            const fields = ["email", "username", "password", "passwordConfirm", "name"];
+
+            for (const field of fields) {
                     if (field !== "email" && field !== "username" && field !== "password" && field !== "passwordConfirm" && field !== "name") return;
 
                     const message = err?.data?.data?.[field]?.message;

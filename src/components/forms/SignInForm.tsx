@@ -38,17 +38,21 @@ const SignInForm = () => {
         console.log(values)
 
         signIn(values.email, values.password)
-            .then(authReponse => {
+            .then(authResponse => {
+                const user = authResponse.record;
+                console.log('Sign In Success: ', user)
+
                 toast.toast({
                     title: "Logged In!",
-                    description: "You're now logged as " + authReponse.record.name
+                    description: "You're now logged as " + user.name
                 })
 
-                setUser(authReponse.record);
+                setUser(user);
 
                 close();
             }).catch((err) => {
-            console.log(err.data)
+            console.log('Sign In Error: ', err)
+
             toast.toast({
                 title: "Something went wrong!",
                 description: "Unable to login",
