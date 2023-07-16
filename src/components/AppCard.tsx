@@ -3,15 +3,22 @@ import {Card, CardContent, CardDescription, CardTitle} from "@/components/ui/car
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
-import {getApp, getImageUrl} from "@/lib/api";
+import {getApp, getAppStar, getImageUrl} from "@/lib/api";
 import {DownloadCloudIcon} from "lucide-react";
 import AppButtons from "@/components/AppButtons";
 
-export const revalidate = 60;
+export const revalidate = 0;
 
 const AppCard = async ({id}: any) => {
-    console.log(id)
-    const {name, description, logo, download_url,website_url, expand: {tags: tags}} = await getApp(id);
+    const [{
+        name,
+        description,
+        logo,
+        download_url,
+        website_url,
+        expand: {tags: tags}
+    }, stars] = await Promise.all([await getApp(id), await getAppStar(id)]);
+
 
     return (
         <Card className="group cursor-pointer">
@@ -27,11 +34,11 @@ const AppCard = async ({id}: any) => {
                             ))}
                         </div>
 
-                        <AppButtons/>
+                        <AppButtons id={id} stars={stars}/>
                     </div>
 
                     <CardTitle>{name}</CardTitle>
-                    <CardDescription>{description}</CardDescription>
+                    <CardDescription>{description} {stars?.length || 0}</CardDescription>
 
                     <div className="flex gap-4 mt-auto w-full ">
                         <Button asChild className="gap-2 flex-grow">

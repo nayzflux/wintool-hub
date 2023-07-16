@@ -3,7 +3,7 @@ import Heading from "@/components/Heading";
 import {getCategory} from "@/lib/api";
 import AppList from "@/components/AppList";
 
-export const revalidate = 60;
+export const revalidate = 0;
 
 const CategoryPage = async ({params}: any) => {
     const slug = params.slug;

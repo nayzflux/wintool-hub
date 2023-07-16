@@ -1,7 +1,9 @@
 import pb from "@/lib/pocketbase";
 
+pb.autoCancellation(false);
+
 export const getCategories = async () => {
-    const records = await pb.collection('categories').getList(1, 20,{
+    const records = await pb.collection('categories').getList(1, 20, {
         sort: 'created',
         expand: 'softwares'
     });
@@ -43,4 +45,25 @@ export const signUp = async (email: string, password: string, username: string, 
     console.log(data)
 
     return data
+}
+
+export const star = async (appId: string, userId: string) => {
+    const data = await pb.collection('stars').create({
+        software: appId,
+        user: userId
+    });
+    return data;
+}
+
+export const getAppStar = async (appId: string) => {
+    const data = await pb.collection('stars').getFullList({
+        filter: `software.id="${appId}"`
+    });
+    console.log(appId, data)
+    return data;
+}
+
+export const getUserStar = async (userId: string) => {
+    const data = await pb.collection('stars').getFirstListItem(`user="${userId}"`);
+    return data;
 }
